@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Job;
 use App\JobRun;
+use App\Setting;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -20,8 +21,9 @@ class DownloadController extends Controller
     {
         $array = [];
         $i = 1;
-        while ($i <= 50) {
-            $url = 'http://feeds.talent.com/feeds/download.php?partner=jobtimiser&country=nl&page=' . $i . '&of=50';
+        $single_xml_page = Setting::where('meta_key', 'single_xml_page')->first()->meta_value;
+        while ($i <= $single_xml_page) {
+            $url = 'http://feeds.talent.com/feeds/download.php?partner=jobtimiser&country=nl&page=' . $i . '&of=' . $single_xml_page;
             $name = date('Y-m-d') . '_job_page_' . $i;
             $extensions = '.xml';
             $folder_path = '/download/' . date('Y-m-d');
@@ -51,8 +53,9 @@ class DownloadController extends Controller
     {
         $array = [];
         $i = 1;
-        while ($i <= 200) {
-            $url = 'http://feeds.talent.com/feeds/download.php?partner=jobtimiser_bulk&country=nl&page=' . $i . '&of=200';
+        $bulk_xml_page = Setting::where('meta_key', 'bulk_xml_page')->first()->meta_value;
+        while ($i <= $bulk_xml_page) {
+            $url = 'http://feeds.talent.com/feeds/download.php?partner=jobtimiser_bulk&country=nl&page=' . $i . '&of=' . $bulk_xml_page;
             $name = date('Y-m-d') . '_job_page_' . $i;
             $extensions = '.xml';
             $folder_path = '/downloadBulk/' . date('Y-m-d');
