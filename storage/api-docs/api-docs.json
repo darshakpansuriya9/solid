@@ -1,0 +1,774 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Rest services for Solliciteren.nl",
+        "description": "The API for solliciteren",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/solliciteren",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/api/jobs/create": {
+            "post": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Create a new job.",
+                "operationId": "job.create",
+                "parameters": [
+                    {
+                        "name": "api-key",
+                        "in": "header",
+                        "description": "bearer auth",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobId",
+                        "in": "query",
+                        "description": "the id of the job.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobURL",
+                        "in": "query",
+                        "description": "the URL to the job.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "applicationURL",
+                        "in": "query",
+                        "description": "the URL to the application form.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "functionTitle",
+                        "in": "query",
+                        "description": "the title of the job",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "functionOneliner",
+                        "in": "query",
+                        "description": "the oneliner of the job",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "functionDescription",
+                        "in": "query",
+                        "description": "the description of the job.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "educationalDirection",
+                        "in": "query",
+                        "description": "the desired education.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "educationalLevel",
+                        "in": "query",
+                        "description": "the desired level of education.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "experienceLevel",
+                        "in": "query",
+                        "description": "the desired level of experience.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "contractType",
+                        "in": "query",
+                        "description": "the type of contract.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "workingHours",
+                        "in": "query",
+                        "description": "the amount of working hours per week.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "functionGroup",
+                        "in": "query",
+                        "description": "the functiongroup of the job.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "branches",
+                        "in": "query",
+                        "description": "the branche the company is active.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "salaryMin",
+                        "in": "query",
+                        "description": "the minimum salary.",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "salaryMax",
+                        "in": "query",
+                        "description": "the maximum salary.",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "salaryPeriod",
+                        "in": "query",
+                        "description": "the payment period of the salary.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "salaryCurrency",
+                        "in": "query",
+                        "description": "the currency denomonation of the salary.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "jobLocationCountry",
+                        "in": "query",
+                        "description": "the location of the job (country).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobLocationPostalcode",
+                        "in": "query",
+                        "description": "the location of the job (postalcode).",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobLocationCity",
+                        "in": "query",
+                        "description": "the location of the job (city).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "organisationName",
+                        "in": "query",
+                        "description": "the name of the organisation.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "organisationWebsite",
+                        "in": "query",
+                        "description": "the website of the organisation.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "organisationLogo",
+                        "in": "query",
+                        "description": "the logo of the organisation.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "recruiterName",
+                        "in": "query",
+                        "description": "the name of the recruiter.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "recruiterEmail",
+                        "in": "query",
+                        "description": "the emailaddress of the recruiter.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "recruiterPhonenumber",
+                        "in": "query",
+                        "description": "the phonenumber of the recruiter.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobBoard",
+                        "in": "query",
+                        "description": "the jobboard to post the job on.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "topJob",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The job is created.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "404": {
+                        "description": "Job already exists."
+                    },
+                    "422": {
+                        "description": "Job contains validation errors."
+                    }
+                }
+            }
+        },
+        "/api/jobs/get/{jobId}": {
+            "get": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Retrieve a specific job",
+                "operationId": "job.show",
+                "parameters": [
+                    {
+                        "name": "api-key",
+                        "in": "header",
+                        "description": "bearer auth",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobId",
+                        "in": "path",
+                        "description": "the identifier of the job.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The job information.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "404": {
+                        "description": "Job not found."
+                    }
+                }
+            }
+        },
+        "/api/jobs/update/{jobId}": {
+            "put": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Update a specific job.",
+                "operationId": "job.update",
+                "parameters": [
+                    {
+                        "name": "api-key",
+                        "in": "header",
+                        "description": "bearer auth",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobId",
+                        "in": "path",
+                        "description": "the identifier of the job.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "jobURL",
+                        "in": "query",
+                        "description": "the URL to the job.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "applicationURL",
+                        "in": "query",
+                        "description": "the URL to the application form.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "functionTitle",
+                        "in": "query",
+                        "description": "the title of the job",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "functionOneliner",
+                        "in": "query",
+                        "description": "the oneliner of the job",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "functionDescription",
+                        "in": "query",
+                        "description": "the description of the job.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "educationalDirection",
+                        "in": "query",
+                        "description": "the desired education.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "educationalLevel",
+                        "in": "query",
+                        "description": "the desired level of education.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "experienceLevel",
+                        "in": "query",
+                        "description": "the desired level of experience.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "contractType",
+                        "in": "query",
+                        "description": "the type of contract.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "workingHours",
+                        "in": "query",
+                        "description": "the amount of working hours per week.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "functionGroup",
+                        "in": "query",
+                        "description": "the functiongroup of the job.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "branches",
+                        "in": "query",
+                        "description": "the branche the company is active.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "salaryMin",
+                        "in": "query",
+                        "description": "the minimum salary.",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "salaryMax",
+                        "in": "query",
+                        "description": "the maximum salary.",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "salaryPeriod",
+                        "in": "query",
+                        "description": "the payment period of the salary.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "salaryCurrency",
+                        "in": "query",
+                        "description": "the currency denomonation of the salary.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "jobLocationCountry",
+                        "in": "query",
+                        "description": "the location of the job (country).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobLocationPostalcode",
+                        "in": "query",
+                        "description": "the location of the job (postalcode).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobLocationCity",
+                        "in": "query",
+                        "description": "the location of the job (city).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "organisationName",
+                        "in": "query",
+                        "description": "the name of the organisation.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "organisationWebsite",
+                        "in": "query",
+                        "description": "the website of the organisation.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "organisationLogo",
+                        "in": "query",
+                        "description": "the logo of the organisation.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "recruiterName",
+                        "in": "query",
+                        "description": "the name of the recruiter.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "recruiterEmail",
+                        "in": "query",
+                        "description": "the emailaddress of the recruiter.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "recruiterPhonenumber",
+                        "in": "query",
+                        "description": "the phonenumber of the recruiter.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobBoard",
+                        "in": "query",
+                        "description": "the jobboard to post the job on.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "topJob",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The job is updated.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "404": {
+                        "description": "Job not found."
+                    },
+                    "422": {
+                        "description": "Job contains validation errors."
+                    }
+                }
+            }
+        },
+        "/api/jobs/delete/{jobId}": {
+            "delete": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Delete a specific job.",
+                "operationId": "job.delete",
+                "parameters": [
+                    {
+                        "name": "api-key",
+                        "in": "header",
+                        "description": "bearer auth",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jobId",
+                        "in": "path",
+                        "description": "the identifier of the job.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The job has been deleted.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "404": {
+                        "description": "Job not found."
+                    }
+                }
+            }
+        },
+        "/api/jobs/jobList": {
+            "get": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Retrieve a list of active jobs",
+                "operationId": "organisations.getJobs",
+                "parameters": [
+                    {
+                        "name": "api-key",
+                        "in": "header",
+                        "description": "bearer auth",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of active jobs",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Access token is missing or invalid"
+                    }
+                }
+            }
+        },
+        "/api/jobs/valueList/{listName}": {
+            "get": {
+                "tags": [
+                    "Jobs"
+                ],
+                "summary": "Retrieve list of active value.",
+                "operationId": "value.getList",
+                "parameters": [
+                    {
+                        "name": "api-key",
+                        "in": "header",
+                        "description": "bearer auth",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "listName",
+                        "in": "path",
+                        "description": "the name of the required value list",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": " All list of active value",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Access token is missing or invalid"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "passport": {
+                "type": "oauth2",
+                "description": "Laravel passport oauth2 security.",
+                "in": "header",
+                "scheme": "https",
+                "flows": {
+                    "password": {
+                        "authorizationUrl": "http://localhost/solliciteren/oauth/authorize",
+                        "tokenUrl": "http://localhost/solliciteren/oauth/token",
+                        "refreshUrl": "http://localhost/solliciteren/token/refresh",
+                        "scopes": []
+                    }
+                }
+            }
+        }
+    }
+}
